@@ -6,8 +6,16 @@ import style from 'style/TodoList.module.scss'
 
 export default function TodoList(props){
     let todoList = props.todoList;
+    let {onToggleDone, onDeleteTodo} = props;
+    
+    // props.mode에 따라 완료 리스트와 미완료 리스트 분리
+    todoList = todoList.filter((item, idx)=>{
+        return props.mode === "complete" ? item.done === true : item.done !== true;
+    })
+
+    // Item Component 생성
     var items = todoList.map((item, idx)=>
-        <Item key={idx} item={item} />
+        <Item onDeleteTodo={onDeleteTodo} onToggleDone={onToggleDone} key={idx} item={item} />
     );
 
     return (
