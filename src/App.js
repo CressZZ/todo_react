@@ -5,18 +5,16 @@ import CompleteList from './component/todolist/CompleteList'
 import NonCompleteList from './component/todolist/NonCompleteList'
 
 
-import './App.css';
+import style from './App.module.scss';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className={`container ${style.App}`}>
         <Header />
         <AddList />
         <CompleteList />
         <NonCompleteList />
-
-
       </div>
     );
   }

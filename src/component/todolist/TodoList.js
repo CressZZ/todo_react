@@ -4,7 +4,7 @@ import Item from './Item';
 export default function TodoList(){
 
     return (
-        <ul>
+        <ul className="list-group">
             <Item />
             <Item />
             <Item />

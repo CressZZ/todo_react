@@ -5,7 +5,7 @@ export default function CompleteList(){
 
     return (
         <div>
-            <h2> 완료 </h2>
+            <h2> 미완료! </h2>
             <TodoList />
         </div>
     );
