@@ -4,15 +4,26 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import todoApp from 'reducers/reducer'
 
+let store = createStore(todoApp)
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,    
+document.getElementById('root'));
 
+// webpack HRM 설정
 if (module.hot) {
     module.hot.accept('./App', () => {
         // const App = require('./App').default
         ReactDOM.render(
-            <App />,
+            <Provider store={store}>
+                <App />
+            </Provider>,
             document.getElementById('root')
         )
     })

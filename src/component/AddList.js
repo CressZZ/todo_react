@@ -1,11 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { addTodo } from 'actions/action'
+import PropTypes from 'prop-types';
 
-export default function AddList(props){
+
+function AddList(props){
 
     let onAddTodo = function(event){
-        // let value = event.target.parentNode.previousSibling.value;
-        props.onAddTodo(event.target.parentNode.previousSibling.value);
-        event.target.parentNode.previousSibling.value = ''
+        let id = props.nextId;
+        let content = event.target.parentNode.previousSibling.value;
+        let regDate = new Date().toISOString().slice(0,10);
+
+        props.onAddTodo({id, content, regDate}); //  dispatch
+        event.target.parentNode.previousSibling.value = ''; // input 값 초기화 
     };
 
     return (
@@ -18,5 +25,24 @@ export default function AddList(props){
             </div>
         </div>
     );
-
 }
+
+AddList.propTypes = {
+    onAddTodo: PropTypes.func,
+    nextId: PropTypes.number
+}
+
+const mapStateToProps = state => {
+    return {
+        nextId: state.nextId
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onAddTodo: (todo) => dispatch(addTodo(todo))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddList)
+
