@@ -84,12 +84,12 @@ class App extends Component {
           onToggleDone={this.handleToggleDone} 
           onDeleteTodo = {this.handleDeleteTodo}
           todoList = {this.state.todoList} 
-          mode={'complete'}/>
+          mode={'nonComplete'}/>
         <TodoList 
           onToggleDone={this.handleToggleDone} 
           onDeleteTodo = {this.handleDeleteTodo}
           todoList = {this.state.todoList} 
-          mode={'nonComplete'}/>
+          mode={'complete'}/>
       </div>
     );
   }
